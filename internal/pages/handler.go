@@ -6,6 +6,7 @@ type PageHandler struct {
 	router fiber.Router
 }
 
+// NewHandler
 func NewHandler(router fiber.Router) {
 	h := &PageHandler{
 		router: router,

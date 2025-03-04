@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-	config.Init()
+	conf := config.NewConfig()
 	app := fiber.New()
 	pages.NewHandler(app)
-	app.Listen(":3000")
+	app.Listen(conf.Port)
 }
