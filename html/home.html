@@ -1,0 +1,17 @@
+{{ template "base" . }} {{ define "title" }}
+<title>Главная страница</title>
+{{ end }}
+{{ define "header" }}
+<style>
+    ul li {
+        display: inline;
+   }
+</style>
+<ul>
+    {{ range .Rubrics }}
+    <li>
+        <strong>{{ .Name }}</strong>
+    </li>
+    {{ end }}
+</ul>
+{{ end }}
