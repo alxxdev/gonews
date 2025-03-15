@@ -2,15 +2,17 @@ package config
 
 import (
 	"log"
+	"log/slog"
 	"os"
 	"strconv"
+	"strings"
 
 	"github.com/joho/godotenv"
 )
 
 func Init() {
 	if err := godotenv.Load(); err != nil {
-		log.Fatalf("No .env file")
+		log.Fatal("Error loading .env file")
 		return
 	}
 	log.Println(".env file loaded")
@@ -23,6 +25,27 @@ type Config struct {
 func NewConfig() *Config {
 	return &Config{
 		Port: getSrting("PORT", ""),
+	}
+}
+
+type LogConfig struct {
+	Level slog.Level
+}
+
+func NewLogConfig() *LogConfig {
+	var l slog.Level
+	switch strings.ToUpper(getSrting("LOG_LEVEL", "INFO")) {
+	case "DEBUG":
+		l = slog.LevelDebug
+	case "INFO":
+		l = slog.LevelInfo
+	case "WARN":
+		l = slog.LevelWarn
+	default:
+		l = slog.LevelInfo
+	}
+	return &LogConfig{
+		Level: l,
 	}
 }
 
