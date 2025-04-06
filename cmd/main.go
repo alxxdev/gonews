@@ -5,9 +5,8 @@ import (
 	"os"
 
 	"github.com/alxxdev/gonews/config"
-	"github.com/alxxdev/gonews/internal/pages"
+	"github.com/alxxdev/gonews/internal/home"
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/template/html/v2"
 )
 
 func main() {
@@ -21,12 +20,9 @@ func main() {
 	slogHandler := slog.NewJSONHandler(os.Stdout, opts)
 	logger := slog.New(slogHandler)
 	slog.SetDefault(logger)
-	// HTML template engine
-	engine := html.New("./html", ".html")
-	// Создание Fiber приложения
-	app := fiber.New(fiber.Config{
-		Views: engine,
-	})
-	pages.NewHandler(app)
+	// Fiber
+	app := fiber.New()
+	app.Static("/public", "public")
+	home.NewPageHandler(app)
 	app.Listen(conf.Port)
 }
