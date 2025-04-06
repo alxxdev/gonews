@@ -3,6 +3,7 @@ module github.com/alxxdev/gonews
 go 1.23.1
 
 require (
+	github.com/a-h/templ v0.3.857 // indirect
 	github.com/andybalholm/brotli v1.1.1 // indirect
 	github.com/gofiber/fiber/v2 v2.52.6 // indirect
 	github.com/gofiber/template v1.8.3 // indirect
@@ -21,5 +22,5 @@ require (
 	github.com/valyala/tcplisten v1.0.0 // indirect
 	go.opentelemetry.io/otel v1.29.0 // indirect
 	go.opentelemetry.io/otel/trace v1.29.0 // indirect
-	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/sys v0.31.0 // indirect
 )

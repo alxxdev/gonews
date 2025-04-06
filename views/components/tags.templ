@@ -1,0 +1,62 @@
+package components
+
+type Tag struct {
+    ID int
+    Name string
+    Enum string
+}
+
+type TagListProps struct {
+    Tags []Tag
+}
+
+templ TagList(props TagListProps) {
+    @tagStyles()
+    <div class="container">
+        <section class="tags-container">
+            for _, tag := range props.Tags {
+                @tagItem(tag)
+            }
+        </section>
+    </div>
+}
+
+templ tagItem(props Tag) {
+    <div class="tag" style={ "background-image: url(/public/images/" + props.Enum + ".jpg)" }>
+        <h5 class="tag-text">{ props.Name }</h5>
+    </div>
+}
+
+templ tagStyles() {
+    <style>
+        .tags-container {
+            display: flex;
+            padding: 10px;
+            border-radius: 12px;
+            gap: 24px;
+            background-color: #f5f5f5;
+        }
+
+        .tag {
+            position: relative;
+            display: flex;
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            width: 170px;
+            height: 48px;
+            background-color: #bbbbbb;
+            overflow: hidden;
+        }
+
+        .tag-text {
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 1;
+            color: #ffffff
+        }
+    </style>
+}
