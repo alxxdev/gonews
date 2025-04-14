@@ -19,6 +19,21 @@ const (
     dayAndYearLayout = "2, 2006"
 )
 
+var monthsMap = map[string]string{
+        "January":   "Январь",
+        "February":  "Февраль",
+        "March":     "Март",
+        "April":     "Апрель",
+        "May":       "Май",
+        "June":      "Июнь",
+        "July":      "Июль",
+        "August":    "Август",
+        "September": "Сентябрь",
+        "October":   "Октябрь",
+        "November":  "Ноябрь",
+        "December":  "Декабрь",
+    }
+
 templ NewsCard(props NewsCardProps) {
     @newCardStyle()
     <div class="news-card">
@@ -158,34 +173,10 @@ templ newCardStyle() {
 }
 
 func getRuMonth(enMonth string) string {
-    switch enMonth {
-	case "January":
-		return "Январь"
-	case "February":
-		return "Февраль"
-	case "March":
-		return "Март"
-	case "April":
-		return "Апрель"
-	case "May":
-		return "Май"
-	case "June":
-		return "Июнь"
-	case "July":
-		return "Июль"
-	case "August":
-		return "Август"
-	case "September":
-		return "Сентябрь"
-	case "October":
-		return "Октябрь"
-	case "November":
-		return "Ноябрь"
-	case "December":
-		return "Декабрь"
-	default:
-		return ""
-	}
+    if ruMonth, exists := monthsMap[enMonth]; exists {
+        return ruMonth
+    }
+    return ""
 }
 
 func getFormattedDate(isoDate string) string {
